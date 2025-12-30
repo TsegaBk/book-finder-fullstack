@@ -1,66 +1,355 @@
+/* ===== Base ===== */
+:root {
+  --bg: #0b1020;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-2: rgba(255, 255, 255, 0.09);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.68);
+  --border: rgba(255, 255, 255, 0.12);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --radius: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 600px at 20% 0%, #15224b 0%, var(--bg) 55%),
+    radial-gradient(900px 500px at 90% 15%, #2b1a4e 0%, transparent 60%),
+    var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
 .App {
-  height: 100vh;
-  padding: 0px 100px;
+  min-height: 100vh;
+}
+
+/* ===== Layout ===== */
+.container {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 56px;
+}
+
+.nav {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--panel), transparent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+.brand-badge {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #6ee7ff 0%, #a78bfa 45%, #fb7185 100%);
+  color: #0b1020;
+  font-weight: 900;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.nav-links a {
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.nav-links a:hover {
+  background: var(--panel-2);
+  color: var(--text);
+}
+
+/* ===== Typography ===== */
+.h1 {
+  font-size: clamp(28px, 3vw, 40px);
+  margin: 18px 0 6px;
+}
+
+.sub {
+  color: var(--muted);
+  margin: 0 0 18px;
+  line-height: 1.4;
+}
+
+/* ===== Controls ===== */
+.card {
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--panel), transparent);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.card-pad {
+  padding: 16px;
+}
+
+.form {
+  display: grid;
+  gap: 10px;
+  max-width: 520px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.25);
+  color: var(--text);
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.input:focus {
+  border-color: rgba(167, 139, 250, 0.65);
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.18);
+}
+
+.row {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 720px) {
+  .row {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
+  gap: 8px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  cursor: pointer;
+  font-weight: 600;
 }
 
-.books {
-  display: flex;
-  gap: 10px;
+.btn:hover {
+  background: rgba(255, 255, 255, 0.10);
 }
-.book {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+
+.btn-primary {
+  border: none;
+  background: linear-gradient(135deg, #6ee7ff 0%, #a78bfa 45%, #fb7185 100%);
+  color: #0b1020;
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-danger {
+  border-color: rgba(251, 113, 133, 0.35);
+}
+
+.btn-danger:hover {
+  background: rgba(251, 113, 133, 0.16);
+}
+
+.tag {
+  display: inline-flex;
   align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--muted);
+  font-size: 12px;
 }
 
-img {
-  width: 200px;
-  height: 300px;
-  object-fit: cover;
-  background-color: rgb(203, 238, 227);
-}
-
-.delete {
-  padding: 3px 6px;
-  background-color: white;
-  border: none;
-  cursor: pointer;
-  border: 1px solid rgb(245, 191, 191);
-  color:rgb(242, 100, 100);
-
-}
-.update {
-  padding: 3px 6px;
-  background-color: white;
-  border: none;
-  cursor: pointer;
-  border: 1px solid rgb(204, 204, 243);
-  color:rgb(139, 139, 234);
-}
-.form {
+.stack {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-input {
-  width: 250px;  
-  padding: 10px;
-  border: 1px solid gray;
+/* ===== Book Grid ===== */
+.grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
 }
 
-.formButton {
-  font-weight: bold;
-  padding: 10px;
-  border: none;
-  background-color: rgb(244, 142, 74);
-  color: white;
-  cursor: pointer;
+@media (min-width: 720px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1020px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.bookCard {
+  overflow: hidden;
+}
+
+.bookMedia {
+  width: 100%;
+  height: 180px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  display: grid;
+  place-items: center;
+  color: rgba(255, 255, 255, 0.55);
+  font-weight: 700;
+}
+
+.bookMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bookBody {
+  padding: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.bookTitle {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.bookDesc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.notice {
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--muted);
+}
+/* Make the cover area a container for overlay */
+.bookMedia {
+  position: relative;
+  width: 100%;
+  height: 220px; /* a bit taller */
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+/* Cover image */
+.bookMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02); /* subtle zoom */
+}
+
+/* Dark gradient overlay so text stays readable if you ever place text on image */
+.bookMedia::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0.10) 0%,
+    rgba(0, 0, 0, 0.55) 70%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  pointer-events: none;
+}
+
+/* Make the content area look like a solid readable panel */
+.bookBody {
+  padding: 14px;
+  display: grid;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.18);
+}
+
+/* Clamp description so it doesn't overflow */
+.bookDesc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* show 3 lines max */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Title also clamp */
+.bookTitle {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.nav-links .btn {
+  font-size: 14px;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.nav-links .btn:hover {
+  background: var(--panel-2);
 }
